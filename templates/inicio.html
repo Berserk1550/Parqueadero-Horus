@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="../static/inicio.css" />
+
+  
+</head>
+<body>
+  <main id="padre_ppall">
+      <h1 id="tlo">Ingrese sus Datos</h1>
+    
+    <form action="/login" method="post" name="form_acceso" id="form_acceso">
+      <div id="cont_contenido">  
+        <div class="cont-campos" id="cedula">
+            
+          <input
+            type="text"
+            name="Usuario_C"
+            id="Usuario_C"
+            maxlength="10"
+            minlength="10"
+            pattern="[0-9]{10,10}"
+            title="Lo que estas escribiendo no son numeros"
+            placeholder="Cédula de Ciudadanía"
+            required
+            inputmode="numeric"
+            tabindex="2"
+          />
+        </div>
+
+        <button href="" id="btn_Entrar">ENTRAR</button>
+        
+      </div>
+    </form>
+  </main>
+</body>
+</html>

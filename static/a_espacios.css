@@ -1,0 +1,136 @@
+*{
+    box-sizing: border-box;
+    transition: all 0.8s;
+}
+
+::placeholder,
+::-moz-placeholder,
+::-webkit-input-placeholder {
+  color: inherit;
+  font-family: inherit;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+figure img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Layout general */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+ 
+}
+
+body {
+  background: url("../static/imagenes/fondo3.jpg ") center center / cover no-repeat;
+  position: relative;
+}
+
+
+h1{
+    font-size: 20px;
+    color: #e3fafa;
+}
+
+main#cap_par {
+    background: rgba(227, 250, 250, 0.0);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+}
+
+
+#form_espacio input{
+    background: rgb(14, 0, 48);
+    border: none;
+}
+
+#form_espacio input::placeholder {
+  color: #e3fafa;       
+  font-family: inherit;
+  font-size: 19px;
+}
+
+
+
+input#capacidad_carros{
+    border-radius: 20px 20px 20px 20px;
+    padding: 20px 30px 20px 30px;
+    color: #e3fafa;
+}
+
+input#capacidad_motos{
+    border-radius: 20px 20px 20px 20px;
+    padding: 20px 30px 20px 30px;
+    color: #e3fafa;
+}
+
+button{
+    margin-top: 20px;
+    background: rgba(0, 6, 128, 0.9);
+    color: #e3fafa;
+    font-size: 25px;
+    border: none;
+    cursor: pointer;
+}
+
+#form_espacio button#guardar{
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+#form_espacio button#limpiar{
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 30px;
+}
+
+@media screen and (min-width: 1200px) {
+ 
+main#form_espacio {
+    height: 100vh;
+    flex-direction: column-reverse;
+}
+
+input#capacidad_carros{
+   font-size: 20px; 
+   padding: 30px;
+   border-radius: 30px;
+  }
+input#capacidad_motos{
+   font-size: 20px; 
+   padding: 30px;
+   border-radius: 30px;
+  }
+
+button{
+    margin-top: 20px;
+    background: rgba(0, 6, 128, 0.9);
+    color: #e3fafa;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+  #form_espacio input::placeholder {
+  color: #e3fafa;       
+  font-family: inherit;
+  font-size: 27px;
+}
+
+}

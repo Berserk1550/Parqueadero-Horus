@@ -1,0 +1,99 @@
+/* Reset y base */
+* {
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    
+    height: 100vh;
+    font-family: system-ui, sans-serif;
+    background: url("../static/imagenes/fondo3.jpg") center center / cover no-repeat;
+    color: #e3fafa;
+}
+
+/* Dashboard layout */
+main.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: 300px;
+    margin: auto;
+}
+
+#cerrar_sesion {
+    text-decoration: none;
+    background-color: #f33;
+    color: blanchedalmond;
+    padding: 18px;
+    border-radius: 10px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    text-align: center;
+}
+
+/* Tarjetas */
+.card {
+    background: rgba(14, 0, 48, 1);
+    border-radius: 20px;
+    padding: 25px;
+    width: 280px;
+    text-align: center;
+
+}
+
+/* Botones tipo enlace */
+.card a {
+    display: inline-block;
+    padding: 14px 20px;
+    border-radius: 20px;
+    background: rgba(0, 6, 128, 0.9);
+    color: #e3fafa;
+    text-decoration: none;    
+    margin-top: 10px;
+    text-align: center;
+}
+
+.card a:hover {
+    background: rgba(0, 6, 128, 1);
+    color: #ffd700;
+}
+
+/* Select estilizado */
+.card select {
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(14, 0, 48, 0.9);
+    color: #e3fafa;
+    border: none;
+    font-size: 20px;
+    margin-top: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.card label {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+@media screen and (min-width: 1200px) {
+    main.dashboard {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin-top: 200px;
+    }
+    html, body {
+        overflow: hidden;
+    }
+    }

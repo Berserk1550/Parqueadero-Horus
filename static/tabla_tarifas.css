@@ -1,0 +1,124 @@
+*{
+    box-sizing: border-box;
+    transition: all 0.8s;
+}
+
+::placeholder,
+::-moz-placeholder,
+::-webkit-input-placeholder {
+    color: inherit;
+    font-family: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url("../static/imagenes/fondo3.jpg") center center / cover no-repeat;
+    position: relative;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #e3fafa;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    margin: 0;
+    background-color: #3d1a57;
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #2a0f3d;
+}
+
+thead th{
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    color: #e3fafa;
+    border-bottom: 2px solid #2a0f3d;
+
+}
+
+tbody tr{
+    border-bottom: 1px solid #2a0f3d;
+    
+}
+
+tbody td{
+    padding: 12px 15px;
+    font-size: 15px;
+    color: #e3fafa;
+    text-align: center;
+    font-size: 18px;
+}
+
+tbody tr:hover{
+    background-color: #2a0f3d;
+}
+
+tbody tr:last-child{
+    border-bottom: none;
+}
+
+#campo_btn{
+    display: flex;
+    margin-top: 0;
+    align-items: center;
+    border: none;
+    gap: 10px;
+}
+
+a{
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn_accion {
+    background: rgba(0, 6, 128, 0.9);
+    color: #e3fafa;
+    border-radius: 20px;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    display: flex;
+}
+
+#btn_eliminar:hover{
+    background-color: #f33;
+    color: #e3fafa;
+}
+
+#btn_modificar:hover{
+    background-color: blue;
+    color: #e3fafa;
+}
+
+#btn_volver {
+    margin-left: 20px;
+    width: max-content;
+}
+
+#btn_volver:hover {
+    background-color: blue;
+    color: #e3fafa;
+}
+
+
+
+
+
+
+

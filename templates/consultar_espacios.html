@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Espacios</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/consultar_espacios.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Espacios del Parqueadero</h1>
+
+    <!-- Carros Pequeños -->
+    <h2>🚗 Carros Pequeños</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Tipo</th>
+          <th>Dimensión</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set espacios_pequenos = espacios | selectattr("tipo", "equalto", "carro") | selectattr("dimension", "equalto", "pequeno") | list %}
+        {% if espacios_pequenos %}
+          {% for espacio in espacios_pequenos %}
+          <tr class="{% if espacio.ocupado == 'disponible' %}disponible{% else %}ocupado{% endif %}">
+            <td>{{ loop.index }}</td>
+            <td>{{ espacio.tipo | capitalize }}</td>
+            <td>{{ espacio.dimension | capitalize }}</td>
+            <td>{{ espacio.ocupado | capitalize }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr><td colspan="4">No hay espacios registrados</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+
+    <!-- Carros Grandes -->
+    <h2>🚙 Carros Grandes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Tipo</th>
+          <th>Dimensión</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set espacios_grandes = espacios | selectattr("tipo", "equalto", "carro") | selectattr("dimension", "equalto", "grande") | list %}
+        {% if espacios_grandes %}
+          {% for espacio in espacios_grandes %}
+          <tr class="{% if espacio.ocupado == 'disponible' %}disponible{% else %}ocupado{% endif %}">
+            <td>{{ loop.index }}</td>
+            <td>{{ espacio.tipo | capitalize }}</td>
+            <td>{{ espacio.dimension | capitalize }}</td>
+            <td>{{ espacio.ocupado | capitalize }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr><td colspan="4">No hay espacios registrados</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+
+    <!-- Motos -->
+    <h2>🏍️ Motos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Tipo</th>
+          <th>Dimensión</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set espacios_motos = espacios | selectattr("tipo", "equalto", "moto") | list %}
+        {% if espacios_motos %}
+          {% for espacio in espacios_motos %}
+          <tr class="{% if espacio.ocupado == 'disponible' %}disponible{% else %}ocupado{% endif %}">
+            <td>{{ loop.index }}</td>
+            <td>{{ espacio.tipo | capitalize }}</td>
+            <td>{{ espacio.dimension | capitalize }}</td>
+            <td>{{ espacio.ocupado | capitalize }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr><td colspan="4">No hay espacios registrados</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+
+    <a href="/parqueadero" class="btn">Volver</a>
+  </div>
+</body>
+</html>

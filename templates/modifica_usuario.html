@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/modifica_usuario.css" />
+    <title>Modificar Usuario</title>
+</head>
+<body>
+
+    <main id="padre_ppal">
+
+        <section id="zona_funcional">
+        <h1 id="tlo">Modificar Usuario</h1>
+
+        <form action="/admin/modificar_usuario/{{ usuario.cedula }}" method="post" name="forma_modificacion" id="forma_modificacion">
+            <div id="cont_contenido">
+
+            <div class="cont-campos">
+                <input 
+                type="text"  
+                maxlength="10"
+                minlength="10"
+                pattern="[0-9]{10}"
+                name="cedula" 
+                placeholder="Cédula de Ciudadanía" 
+                value="{{ usuario.cedula }}"
+                required readonly />
+            </div>
+
+            <div class="cont-campos">
+                <input 
+                type="text"
+                maxlength="65"
+                minlength="1"
+                pattern="[a-zA-Z0-9]{1,65}"
+                name="nombres" 
+                placeholder="Nombres" 
+                value="{{ usuario.nombres }}"
+                required />
+            </div>
+
+            <div class="cont-campos">
+                <input 
+                type="text"
+                maxlength="21"
+                minlength="6"
+                name="apellidos" 
+                placeholder="Apellidos"
+                pattern="[a-zA-Z0-9]{1,21}"
+                value="{{ usuario.apellidos }}"
+                required />
+                
+            </div>
+
+            <div class="cont-campos">
+                <input 
+                type="email" 
+                name="correo"
+                maxlength="76"
+                minlength="7"
+                pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{7,76}$"
+                placeholder="Correo electrónico" 
+                value="{{ usuario.correo }}"
+                required />
+            </div>
+
+            <div class="cont-campos">
+                <input 
+                type="tel" 
+                maxlength="10"
+                minlength="10"
+                pattern="[0-9]{10}"
+                name="telefono" 
+                placeholder="Teléfono" 
+                value="{{ usuario.telefono }}"
+                required />
+            </div>
+
+            <div class="cont-campos">
+                <input 
+                type="tel" 
+                maxlength="10"
+                minlength="10"
+                pattern="[0-9]{10}"
+                name="tel_emergencia" 
+                placeholder="Teléfono de emergencia" 
+                value="{{ usuario.tel_emergencia }}"
+                required />
+            </div>
+
+            </div>
+
+            <div class="cont-botones">
+                <a href="/admin/consultar_usuario" class="botones" id="btn_volver">Volver</a>
+                <button type="submit" class="botones" id="btn_continuar">Guardar Cambios</button>
+            </div>
+
+        </form>
+        </section>
+
+    </main>
+
+</body>
+</html>

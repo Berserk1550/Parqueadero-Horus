@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procesos</title>
+  <link rel="stylesheet" href="../static/operaciones.css">
+  <script src="../static/js/reloj_operaciones.js"></script>
+  <script src="../static/js/emergente-ven.js"></script>
+</head>
+<body>
+
+  <main id="padre_ppal">
+    <header id="barra_superior">
+      <section id="reloj">
+        <span id="hora_actual"></span>
+      </section>
+    </header>
+
+    <h1 id="tlo">Procesos de Ingreso y Egreso</h1>
+
+    <!-- Zona funcional -->
+    <section id="zona_funcional">
+
+      <!-- Iconos de acción -->
+      <div id="grupo_iconos">
+        <button type="button" id="btn_carro" class="icono-accion">
+          <img src="../static/imagenes/carro.svg" alt="Icono de carro">
+          <span>Carro</span>
+        </button>
+
+        <button type="button" id="btn_moto" class="icono-accion">
+          <img src="../static/imagenes/moto.svg" alt="Icono de moto">
+          <span>Moto</span>
+        </button>
+      </div>
+
+      <!-- Grupo de botones (Versión HEAD)  
+      <div id="grupo_botones">
+        <input type="text" id="placa" name="placa" minlength="6" maxlength="6"
+               placeholder="N° Placa" required pattern="[A-Z0-9\-]{6,6}">
+        <button type="button" id="btn_ingreso">Ingreso</button>
+        <button type="button" id="btn_egreso">Egreso</button>
+      </div>
+      -->
+
+      <!-- Contadores dinámicos -->
+      <!--
+      <div id="contadores">
+        <div class="contador">
+          <span class="icono">🚗</span>
+          <span class="espacios"></span>
+        </div>
+        <div class="contador">
+          <span class="icono">🏍️</span>
+          <span class="espacios"></span>
+        </div>
+      </div>
+      -->
+
+      <!-- Tablas -->
+      <section id="tabla_activos" style="display:none;">
+        <h2>Vehículos activos</h2>
+        <table>
+          <tr><th>Placa</th><th>Cédula</th><th>Ingreso</th></tr>
+          <tr><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+
+      <section id="tabla_historico" style="display:none;">
+        <h2>Registros previos</h2>
+        <table>
+          <tr><th>Placa</th><th>Cédula</th><th>Ingreso</th><th>Salida</th></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </section>
+
+    </section>
+  </main>
+
+  <!-- Modal único -->
+  <div id="ventana_proceso" class="modal">
+    <div class="modal-contenido">
+      <span id="cerrar" class="cerrar">&times;</span>
+
+      <form id="form_operacion">
+        <input type="text" name="vehiculo_placa" placeholder="Ingrese placa" maxlength="6" minlength="6" pattern="[A-Za-z]{3}[0-9A-Za-z]{3}">
+        <input type="hidden" name="tipo_vehiculo" id="tipo_vehiculo_input">
+
+        <button type="button" id="registrar_ingreso">Registrar ingreso</button>
+        <button type="button" id="liberar_salida">Liberar salida</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
+

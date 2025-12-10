@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Tarifas</title>
+    <link rel="stylesheet" href="../static/tabla_tarifas.css">
+</head>
+<body>
+
+    <header>
+        <h1>Tarifas Registradas</h1>
+    </header>
+
+    <form>
+        <a href="/opciones" id="btn_volver" class="btn_accion">Volver</a>
+    </form>
+
+    <main>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Tarifa</th>
+                        <th>Horario</th>
+                        <th>Tipo de Vehículo</th>
+                        <th>Valor</th>
+                        <th>Hora Inicio</th>
+                        <th>Hora Fin</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for tarifa in tarifas %}
+                    <tr>
+                        <td>{{ tarifa.tipo_tarifa }}</td>
+                        <td>{{ tarifa.horario }}</td>
+                        <td>{{ tarifa.tipo_vehiculo }}</td>
+                        <td>{{ tarifa.valor_tarifa }}</td>
+                        <td>{{ tarifa.hora_inicio }}</td>
+                        <td>{{ tarifa.hora_fin }}</td>
+
+                        <td id="campo_btn">
+                            <form action="/modificar_tarifa/{{ tarifa.id_tarifas }}" method="get">
+                                <button class="btn_accion" id="btn_modificar" type="submit">Modificar</button>
+                            </form>
+
+                            <form action="/eliminar_tarifa/{{ tarifa.id_tarifas }}" method="post">
+                                <button class="btn_accion" id="btn_eliminar" type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div>
+                
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
+

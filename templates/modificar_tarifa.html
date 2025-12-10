@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/modificar.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/mofidicar_tarifa.css">
+</head>
+<body>
+
+        <h1 id="tlo">Modificar Tarifa</h1>
+        
+        <main id="padre_ppal">
+        <form action="/modificar_tarifa/{{ tarifa.id_tarifas }}" method="post" name="forma_modificar" id="forma_modificar">
+
+
+            <legend>Tipo de Tarifa</legend>
+            <div id="con_contenido">
+                <select id="tipo_tarifa" name="tipo_tarifa" required>
+                <option value="primera_hora" {% if tarifa.tipo_tarifa == 'primera_hora' %}selected{% endif %}>Valor primera hora</option>
+                <option value="hora_extra" {% if tarifa.tipo_tarifa == 'hora_extra' %}selected{% endif %}>Valor hora extra</option>
+                <option value="jornada" {% if tarifa.tipo_tarifa == 'jornada' %}selected{% endif %}>Valor jornada</option>
+                <option value="dia_completo" {% if tarifa.tipo_tarifa == 'dia_completo' %}selected{% endif %}>Valor día completo</option>
+                </select>
+            </div>  
+            
+            <legend>Horario</legend>
+            <div id="con_contenido">
+                <select id="horario" name="horario" required>
+                    <option value="diurno" {% if tarifa.horario == 'diurno' %}selected{% endif %}>Diurno</option>
+                    <option value="nocturno" {% if tarifa.horario == 'nocturno' %}selected{% endif %}>Nocturno</option>
+                </select>
+            </div>  
+
+            <legend>Tipo de Vehículo</legend>
+            <div id="con_contenido">
+                <select id="tipo_vehiculo" name="tipo_vehiculo" required>
+                <option value="carro" {% if tarifa.tipo_vehiculo == 'carro' %}selected{% endif %}>Carro</option>
+                <option value="moto" {% if tarifa.tipo_vehiculo == 'moto' %}selected{% endif %}>Moto</option>
+                </select>
+            </div>
+
+            <legend>Valor de la Tarifa</legend>
+            <div id="con_contenido">  
+                <input 
+                type="number" 
+                id="valor_tarifa" 
+                name="valor_tarifa" 
+                min="0" 
+                max="999999" 
+                placeholder="valor de la tarifa"
+                value="{{ tarifa.valor_tarifa }}"
+                required
+                >
+            </div>
+
+            <legend>Hora de Inicio</legend>
+            <div id="con_contenido">
+                <input 
+                type="time" 
+                id="hora_inicio" 
+                name="hora_inicio" 
+                value="{{ tarifa.hora_inicio }}"
+                required
+                >
+            </div>
+
+            <legend>Hora de Fin</legend>
+            <div id="con_contenido">
+                <input 
+                type="time" 
+                id="hora_fin" 
+                name="hora_fin" 
+                value="{{ tarifa.hora_fin }}"
+                required
+                >
+            </div>  
+
+            <div id="con_botones">
+                <button  id="volver" class="botones" type="submit">Volver</button>
+                <button  id="guardar" class="botones" type="submit">Guardar Cambios</button>
+            </div>
+        </form>
+        </main>
+</head>
+<body>

@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+    transition: all 0.8s;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+figure img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+body{
+    background: url("") center center / cover no-repeat;
+    position : relative;
+}

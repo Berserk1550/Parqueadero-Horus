@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/c_usuarios.css">
+    <title>Usuarios Registrados</title>
+</head>
+<body>
+
+    <h1>Usuarios Registrados</h1>
+
+    <form>
+        <a href="/opciones" id="btn_volver" class="btn_accion">Volver</a>
+    </form>
+
+    <main>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Tel. Emergencia</th>
+                        <th>Fecha Registro</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for u in usuarios %}
+                    <tr>
+                        <td>{{ u['cedula'] }}</td>
+                        <td>{{ u['nombres'] }}</td>
+                        <td>{{ u['apellidos'] }}</td>
+                        <td>{{ u['correo'] }}</td>
+                        <td>{{ u['telefono'] }}</td>
+                        <td>{{ u['tel_emergencia'] }}</td>
+                        <td>{{ u['fecha_registro'] }}</td>
+
+                        <td id="campo_btn">
+                            <form action="/modificar_usuario/{{ u['cedula'] }}" method="get">
+                                <button type="submit" id="btn_modificar" class="btn_accion">Modificar</button>
+                            </form>
+
+                            <form action="/eliminar_usuario/{{ u['cedula'] }}" method="post">
+                                <button id="btn_eliminar" class="btn_accion" type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+</body>
+</html>
+

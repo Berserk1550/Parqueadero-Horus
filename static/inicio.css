@@ -1,0 +1,137 @@
+/* Reset y base */
+* {
+  box-sizing: border-box;
+  transition: all 0.8s;
+}
+
+::placeholder,
+::-moz-placeholder,
+::-webkit-input-placeholder {
+  color: inherit;
+  font-family: inherit;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+figure img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Layout general */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  background: url("../static/imagenes/fondo3.jpg") center center / cover no-repeat;
+  position: relative;
+  z-index: 1;
+}
+
+/* Contenedor principal con glassmorfismo */
+main#padre_ppall {
+  background: rgba(227, 250, 250, 0);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#padre_ppall #tlo {
+  color: #e3fafa;
+  text-align: center;
+}
+
+/* Formulario */
+form#form_acceso {
+  position: relative;
+  margin: 0 auto;
+  top: auto;
+  left: auto;
+  transform: none;
+  z-index: 6;
+}
+
+#form_acceso input::placeholder {
+  color: #e3fafa;       
+  font-family: inherit;
+}
+
+
+/* Campos */
+#form_acceso .cont-campos {
+  position: relative;
+  width: 330px;
+  margin-right: -100px;
+}
+
+#form_acceso input {
+  background: rgba(14, 0, 48, 0.9);
+  color: #e3fafa;
+  border: none;
+  font-size: 0.9em;
+  padding: 10px;
+  position: relative;
+}
+
+/* Contenedor de inputs y botones */
+#cont_contenido {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Campo de cédula */
+#form_acceso input#Usuario_C {
+  border-radius: 20px;
+  padding: 20px 30px;
+  width: 70%;
+}
+
+/* Botón de entrada */
+#form_acceso #btn_Entrar {
+  background: rgba(0, 6, 128, 0.9);
+  color: #e3fafa;
+  border-radius: 20px;
+  border: none;
+  padding: 15px;
+  width: 150px;
+}
+
+/* Estilos para pantallas grandes */
+@media screen and (min-width: 1200px) {
+  #padre_ppall #tlo {
+    margin-right: 0;
+  }
+
+  form#form_acceso {
+    margin-bottom: 0;
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  #form_acceso #cont_contenido {
+    position: relative;
+    left: auto;
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/dashboard.css" />
+  <title>Opciones principales</title>
+</head>
+<body>
+
+  <a href="/cerrar_sesion" id="cerrar_sesion">Cerrar Sesion</a>
+
+  <div>
+
+
+    <main class="dashboard">
+
+      <section class="card">
+        
+        <a href="/operaciones" id="servicios">Gestión de servicios prestados</a>
+      </section>
+
+      <section class="card">
+        
+        <label for="gestion_usuarios" >Gestion de empleados</label>
+        <select id="gestion_usuarios" onchange="redirigirUsuario(this.value)">
+          <option value="">Seleccionar</option>
+          <option value="/admin/agregar_usuario">Crear Usuario</option>
+          <option value="/admin/consultar_usuario">Consultar Usuario</option>
+        </select>
+
+      </section>
+
+      <section class="card">
+        
+        <a href="/espacios/modificar" id="parqueo">Gestionar parqueadero</a>
+      </section>
+
+      <section class="card">
+        <label for="gestion_tarifas" >Gestion de Tarifas</label>
+        <select id="gestion_usuarios" onchange="redirigirUsuario(this.value)">
+          <option value="">Seleccionar</option>
+          <option value="/crear_tarifas">Crear Tarifas</option>
+          <option value="/consultar_tarifas">Consultar Tarifas</option>
+        </select>
+      </section>
+
+      
+
+    </main>
+
+    <script>
+      function redirigirUsuario(ruta) {
+        if (ruta) {
+          window.location.href = ruta;
+        }
+      }
+    </script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/crear_tarifa.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+        <h1 id="tlo">Crear Tarifa</h1>
+        
+        <main id="padre_ppal">
+        <form action="/crear_tarifas" method="post" name="forma_crear" id="forma_crear">
+
+
+            <legend>Tipo de Tarifa</legend>
+            <div id="con_contenido">
+                <select id="tipo_tarifa" name="tipo_tarifa" required>
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option value="primera_hora">Valor primera hora</option>
+                    <option value="hora_extra">Valor hora extra</option>
+                    <option value="jornada">Valor jornada</option>
+                    <option value="dia_completo">Valor día completo</option>
+                </select>
+            </div>  
+            
+            <legend>Horario</legend>
+            <div id="con_contenido">
+                <select id="horario" name="horario" required>
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option value="diurno">Diurno</option>
+                    <option value="nocturno">Nocturno</option>
+                </select>
+            </div>  
+
+            <legend>Tipo de Vehículo</legend>
+            <div id="con_contenido">
+                <select id="tipo_vehiculo" name="tipo_vehiculo" required>
+                    <option value="" disabled selected>Seleccione...</option>
+                    <option value="carro">Carro</option>
+                    <option value="moto">Moto</option>
+                </select>
+            </div>
+
+
+            </div>
+
+            <legend>Valor de la Tarifa</legend>
+            <div id="con_contenido">  
+                <input 
+                type="number" 
+                id="valor_tarifa" 
+                name="valor_tarifa" 
+                min="0" 
+                max="999999" 
+                placeholder="Ingrese el valor de la tarifa" 
+                required
+                >
+
+            </div>
+
+            <legend>Hora de Inicio</legend>
+            <div id="con_contenido">
+                <input 
+                type="time" 
+                id="hora_inicio" 
+                name="hora_inicio" 
+                required
+                >
+
+            </div>
+
+            <legend>Hora de Fin</legend>
+            <div id="con_contenido">
+                <input 
+                type="time" 
+                id="hora_fin" 
+                name="hora_fin" 
+                required
+                >
+            </div>  
+
+            <div id="con_botones">
+                <a href="/opciones" class="botones">Volver</a>
+                <button  id="guardar" class="botones" type="submit">Guardar Cambios</button>
+            </div>
+        </form>
+        </main>
+
+    
+</body>
+</html>
+
