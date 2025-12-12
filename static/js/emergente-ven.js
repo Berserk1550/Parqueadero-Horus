@@ -3,17 +3,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnCarro = document.getElementById("btn_carro");
   const btnMoto = document.getElementById("btn_moto");
   const modal = document.getElementById("ventana_proceso");
-  const cerrarBtn = document.getElementById("cerrar"); // ajustado al HTML
+  const cerrarBtn = document.getElementById("cerrar");
   const formOperacion = document.getElementById("form_operacion");
   const tipoVehiculoInput = document.getElementById("tipo_vehiculo_input");
   const registrarBtn = document.getElementById("registrar_ingreso");
   const liberarBtn = document.getElementById("liberar_salida");
-  const placaInput = formOperacion.querySelector("input[name='vehiculo_placa']"); // ajustado al HTML
+  const placaInput = formOperacion.querySelector("input[name='vehiculo_placa']");
 
-  // --- Helpers UI ---
+  // --- Funciones auxiliares ---
   function abrirModalOperacion(tipo) {
     modal.style.display = "flex";
-    tipoVehiculoInput.value = tipo;
+    tipoVehiculoInput.value = tipo.toUpperCase(); // siempre enviar CARRO/MOTO
+    placaInput.value = ""; // limpiar input al abrir
+    placaInput.disabled = false;
+    placaInput.ariaReadOnly = false;
+    placaInput.focus();
+    console.log("DEBUG tipo enviado:", tipoVehiculoInput.value);
   }
 
   function cerrarModalOperacion() {
@@ -34,7 +39,32 @@ document.addEventListener("DOMContentLoaded", function () {
       Tarifa aplicada: ${data.tarifa ? data.tarifa.tipo_tarifa : "N/A"}
       Total a cobrar: $${Number(data.total).toFixed(2)}
     `;
-    alert(resumen); // usa alert porque tu HTML no tiene modal de resumen
+    alert(resumen);
+  }
+
+  // --- Validación de placa ---
+  function validarPlaca(tipo, placa) {
+    placa = placa.trim().toUpperCase();
+
+    if (placa.length !== 6) {
+      alert("La placa debe tener exactamente 6 caracteres.");
+      return false;
+    }
+
+    if (tipo === "CARRO") {
+      if (!/^[A-Z]{3}[0-9]{3}$/.test(placa)) {
+        alert("Formato Carro: 3 letras + 3 números (ej: ABC123).");
+        return false;
+      }
+    } else if (tipo === "MOTO") {
+      if (!/^[A-Z]{3}[0-9]{2}[A-Z]{1}$/.test(placa)) {
+        alert("Formato Moto: 3 letras + 2 números + 1 letra (ej: ABC12D).");
+        return false;
+      }
+    }
+
+    placaInput.value = placa; // normalizar a mayúsculas
+    return true;
   }
 
   // --- Eventos ---
@@ -42,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
   btnMoto.addEventListener("click", () => abrirModalOperacion("moto"));
   cerrarBtn.addEventListener("click", cerrarModalOperacion);
 
-  // --- Prevención de doble envío ---
   let bloqueando = false;
   function lock() {
     bloqueando = true;
@@ -55,25 +84,23 @@ document.addEventListener("DOMContentLoaded", function () {
     liberarBtn.disabled = false;
   }
 
-  // --- Registrar ingreso ---
   registrarBtn.addEventListener("click", async function () {
     if (bloqueando) return;
     lock();
 
-    if (placaInput && placaInput.value) {
-      placaInput.value = placaInput.value.trim().toUpperCase();
-    } else {
-      alert("Debes ingresar una placa");
+    const tipo = tipoVehiculoInput.value;
+    const placa = placaInput.value;
+
+    if (!validarPlaca(tipo, placa)) {
       unlock();
       return;
     }
 
     const formData = new FormData(formOperacion);
-
     try {
       const response = await fetch("/operaciones/ingreso", { method: "POST", body: formData });
       const data = await response.json();
-
+      console.log("DEBUG ingreso:", data);
       if (response.ok && data.ok) {
         alert("Ingreso registrado: " + data.vehiculo_placa);
         cerrarModalOperacion();
@@ -89,25 +116,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // --- Liberar salida ---
   liberarBtn.addEventListener("click", async function () {
     if (bloqueando) return;
     lock();
 
-    if (placaInput && placaInput.value) {
-      placaInput.value = placaInput.value.trim().toUpperCase();
-    } else {
-      alert("Debes ingresar una placa");
+    const tipo = tipoVehiculoInput.value;
+    const placa = placaInput.value;
+
+    if (!validarPlaca(tipo, placa)) {
       unlock();
       return;
     }
 
     const formData = new FormData(formOperacion);
-
     try {
       const response = await fetch("/operaciones/salida", { method: "POST", body: formData });
       const data = await response.json();
-
       if (response.ok && data.ok) {
         mostrarResumen(data);
         cerrarModalOperacion();

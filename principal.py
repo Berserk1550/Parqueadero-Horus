@@ -16,6 +16,9 @@ def opciones():
         return redirect("/")
     
 
+print("Rutas registradas:")
+for rule in programa.url_map.iter_rules():
+    print(rule, rule.methods)
 
 
 if __name__=="__main__":
