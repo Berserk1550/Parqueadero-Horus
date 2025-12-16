@@ -15,9 +15,10 @@ class Usuario:
     
     def consultarUsuario(self,nit):
         
-        sql = "SELECT cedula, nombres, apellidos, correo, telefono, tel_emergencia, fecha_registro FROM usuarios WHERE parqueadero_nit = %s AND rol = %s"
+        sql = "SELECT cedula, nombres, apellidos, correo, telefono, tel_emergencia, fecha_registro FROM usuarios WHERE parqueadero_nit = %s AND rol = %s AND activo = %s"
         rol = "portero"
-        mi_cursor.execute(sql,(nit,rol,))
+        estado = "activo"
+        mi_cursor.execute(sql,(nit,rol,estado,))
         resultado = mi_cursor.fetchall()
         
         return resultado
@@ -52,10 +53,11 @@ class Usuario:
         return "ok"
 
     def eliminarUsuario(self, cedula):
-        sql = """UPDATE tarifas
-                SET activo = 'inactivo'
-                WHERE activo = 'activo'
-                    AND cedula = %s"""
+        sql = """
+            UPDATE usuarios
+            SET activo = 'inactivo'
+            WHERE cedula = %s
+        """
         mi_cursor.execute(sql, (cedula,))
         mi_db.commit()
         return "ok"

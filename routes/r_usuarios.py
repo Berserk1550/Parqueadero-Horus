@@ -66,11 +66,11 @@ def crear_usuario():                            #iniciamos registro del usuario/
         tel_emergencia=request.form['tel_emergencia']
         rol="portero"
         parqueadero_nit = session.get("parqueadero_nit")
-        fecha_registro = datetime.today().strftime('%Y-%m-%d')
+        fecha_registro = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 
         mi_usuario.ingresar_usuario(cedula, nombres, apellidos, correo, telefono, tel_emergencia, rol, parqueadero_nit, fecha_registro)
-        return redirect("/opciones")
+        return redirect("/admin/consultar_usuario")
     return render_template("reg_portero.html")  # ← muestra el formulario si no se ha enviado # si no es POST, es GET → mostrar el formulario 
 
 # Mostrar formulario para modificar un usuario
@@ -95,7 +95,7 @@ def actualizarUsuario(cedula):
         return redirect("/admin/consultar_usuario")
 
 # Eliminar usuario
-@programa.route("/eliminar_usuario/<cedula>", methods=["POST"])
+@programa.route("/admin/eliminar_usuario/<cedula>", methods=["POST"])
 def eliminarUsuario(cedula):
     mi_usuario.eliminarUsuario(cedula)
     return redirect("/admin/consultar_usuario")

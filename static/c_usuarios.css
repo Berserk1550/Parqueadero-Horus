@@ -23,6 +23,12 @@ h1 {
     color: #e3fafa;
 }
 
+#conten_btn{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
 main {
     width: 100%;
     display: flex;
@@ -92,7 +98,6 @@ a{
     border-radius: 20px;
     border: none;
     padding: 15px;
-    width: 100%;
     display: flex;
 }
 
@@ -107,11 +112,21 @@ a{
 }
 
 #btn_volver {
-    margin-left: 20px;
+    margin-bottom: 10px;
     width: max-content;
 }
 
 #btn_volver:hover {
     background-color: blue;
+    color: #e3fafa;
+}
+
+#btn_agregar{
+    margin-bottom: 10px;
+    width: max-content;
+}
+
+#btn_agregar:hover {
+    background-color: green;
     color: #e3fafa;
 }
