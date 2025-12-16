@@ -1,7 +1,7 @@
 from conexion import mi_cursor, mi_db
 from datetime import datetime
 import sys
-import os
+import os 
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 

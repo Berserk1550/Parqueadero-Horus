@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const liberarBtn = document.getElementById("liberar_salida");
   const placaInput = formOperacion.querySelector("input[name='vehiculo_placa']");
 
-  // --- Funciones auxiliares ---
+  // --- Funciones auxiliares ----
   function abrirModalOperacion(tipo) {
     modal.style.display = "flex";
     tipoVehiculoInput.value = tipo.toUpperCase(); // siempre enviar CARRO/MOTO

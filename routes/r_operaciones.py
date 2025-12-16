@@ -46,7 +46,7 @@ def ingreso():
     mi_cursor.execute(sql_check, (vehiculo_placa, parqueadero_nit))
     resultado = mi_cursor.fetchone()
     if resultado['total'] > 0:
-        return jsonify({"ok": False, "error": "ya_activo"}), 409
+        return jsonify({"ok": False, "error": "ya_activo"}),409
     
     tarifas = mi_tarifa.consultarTarifas(parqueadero_nit)
     tarifa_usada = next((t for t in tarifas if str(t['tipo_vehiculo']).upper() == tipo_vehiculo), None)
