@@ -45,18 +45,17 @@
       -->
 
       <!-- Contadores dinámicos -->
-      <!--
+      
       <div id="contadores">
         <div class="contador">
           <span class="icono">🚗</span>
-          <span class="espacios"></span>
+          <span class="espacios" id="espacio_carro">Ocupados: {{ conteo_carros }} / Disponibles: {{ disponible_carro }}</span>
         </div>
         <div class="contador">
           <span class="icono">🏍️</span>
-          <span class="espacios"></span>
+          <span class="espacios" id="espacio_moto">Ocupados: {{ conteo_motos }} / Disponibles: {{ disponible_moto }}</span>
         </div>
       </div>
-      -->
 
       <!-- Tablas -->
       <section id="tabla_activos" style="display:none;">

@@ -67,6 +67,19 @@ document.addEventListener("DOMContentLoaded", function () {
     return true;
   }
 
+  async function capacidadDisponible(){
+    try {
+    const res= await fetch("/operaciones/espacios_json");
+    const data= await res.json();
+    if (data.ok){
+      document.querySelector("#espacio_carro").textContent = `Ocupados: ${data.carros.ocupados}/Disponibles: ${data.carros.libres}`;
+      document.querySelector("#espacio_moto").textContent = `Ocupados: ${data.motos.ocupados}/Disponibles: ${data.motos.libres}`;
+      }
+    } catch (error) {
+      console.error("Error al actualizar contadores: ", error);
+    }
+  }
+
   // --- Eventos ---
   btnCarro.addEventListener("click", () => abrirModalOperacion("carro"));
   btnMoto.addEventListener("click", () => abrirModalOperacion("moto"));
@@ -105,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Ingreso registrado: " + data.vehiculo_placa);
         cerrarModalOperacion();
         resetForm();
+        capacidadDisponible();
       } else {
         alert("Error al registrar ingreso: " + (data.error || "Error desconocido"));
       }
@@ -136,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mostrarResumen(data);
         cerrarModalOperacion();
         resetForm();
+        capacidadDisponible();
       } else {
         alert("Error al registrar salida: " + (data.error || "Error desconocido"));
       }

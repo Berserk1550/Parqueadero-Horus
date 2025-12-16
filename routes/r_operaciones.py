@@ -11,9 +11,16 @@ def operaciones():
     activos = mi_operacion.vehiculos_activos(parqueadero_nit)
     registros = mi_operacion.registros_previos(parqueadero_nit)
 
-    conteo_carros = len([v for v in activos if str(v.get('tipo_vehiculo', '')).upper() == 'CARRO'])
-    conteo_motos = len([v for v in activos if str(v.get('tipo_vehiculo', '')).upper() == 'MOTO'])
-    return render_template("operaciones.html", activos=activos, registros=registros, conteo_carros=conteo_carros, conteo_motos=conteo_motos)
+    sql_capacidad = "SELECT capacidad_carros, capacidad_motos, operaciones_carro, operaciones_moto FROM parqueadero WHERE nit=%s"
+    mi_cursor.execute(sql_capacidad, (parqueadero_nit,))
+    capacidad = mi_cursor.fetchone()
+
+    conteo_carros = capacidad['operaciones_carro']
+    conteo_motos  = capacidad['operaciones_moto']
+
+    disponible_carro = capacidad['capacidad_carros'] - conteo_carros
+    disponible_moto = capacidad['capacidad_motos']- conteo_motos
+    return render_template("operaciones.html", activos=activos, registros=registros, conteo_carros=conteo_carros, conteo_motos=conteo_motos, disponible_carro=disponible_carro, disponible_moto=disponible_moto)
 
 @programa.route("/operaciones/ingreso", methods=['POST'])
 def ingreso():
@@ -55,6 +62,11 @@ def ingreso():
     
     sql_insert = """INSERT INTO registros (vehiculo_placa, usuario_cedula, parqueadero_nit, fecha_ingreso, activo, tarifa_id) VALUES (%s,%s,%s, NOW(), 'activo', %s)"""
     mi_cursor.execute(sql_insert, (vehiculo_placa, usuario_cedula, parqueadero_nit, tarifa_usada['id_tarifas']))
+    if tipo_vehiculo == "CARRO":
+        contador = "UPDATE parqueadero SET operaciones_carro = operaciones_carro +1 WHERE nit=%s"
+    else:
+        contador = "UPDATE parqueadero SET operaciones_moto = operaciones_moto +1 WHERE nit=%s"
+    mi_cursor.execute(contador,(parqueadero_nit,))
     mi_db.commit()
     return jsonify({"ok": True, "vehiculo_placa": vehiculo_placa, "tipo_vehiculo": tipo_vehiculo})
 
@@ -94,8 +106,13 @@ def salida():
         
     sql_update = """UPDATE registros SET fecha_salida = NOW(), total = %s, activo='inactivo', tarifa_id=%s WHERE id_registros=%s"""
     mi_cursor.execute(sql_update,(total, tarifa_id, id_registros))
+
+    if tipo_vehiculo.upper() == "CARRO":
+        contador = "UPDATE parqueadero SET operaciones_carro = operaciones_carro -1 WHERE nit=%s"
+    else:
+        contador = "UPDATE parqueadero SET operaciones_moto = operaciones_moto -1 WHERE nit=%s"
+    mi_cursor.execute(contador,(parqueadero_nit,))
     mi_db.commit()
-    
     return jsonify({"ok": True, "vehiculo_placa": vehiculo_placa, "tipo_vehiculo": tipo_vehiculo, "fecha_ingreso": str(fecha_ingreso), "fecha_salida": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "minutos": minutos, "tarifa": tarifa_usada, "total": float(total)})
 
 @programa.route("/operaciones/vehiculos_activos", methods=['GET'])
@@ -113,3 +130,26 @@ def registros_previos():
     parqueadero_nit = session.get("parqueadero_nit")
     operaciones = mi_operacion.registros_previos(parqueadero_nit)
     return render_template("operaciones_historico.html", operaciones=operaciones)
+
+@programa.route("/operaciones/espacios_json", methods=['GET'])
+def espacios_json():
+    if not session.get("login"):
+        return jsonify({"ok": False, "error": "no_session"}), 401
+    parqueadero_nit = session.get("parqueadero_nit")
+
+    sql = "SELECT capacidad_carros, capacidad_motos, operaciones_carro, operaciones_moto FROM parqueadero WHERE nit=%s"
+    mi_cursor.execute(sql, (parqueadero_nit,))
+    capacidad = mi_cursor.fetchone()
+    if not capacidad:
+        return jsonify({"ok": False, "error": "sin_parqueadero"}), 404
+
+    conteo_carros = capacidad['operaciones_carro']
+    conteo_motos  = capacidad['operaciones_moto']
+    disponible_carro = capacidad['capacidad_carros'] - conteo_carros
+    disponible_moto  = capacidad['capacidad_motos'] - conteo_motos
+
+    return jsonify({
+        "ok": True,
+        "carros": {"ocupados": conteo_carros, "libres": disponible_carro},
+        "motos":  {"ocupados": conteo_motos,  "libres": disponible_moto}
+    })
