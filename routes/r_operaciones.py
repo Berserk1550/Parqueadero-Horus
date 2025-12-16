@@ -11,8 +11,8 @@ def operaciones():
     activos = mi_operacion.vehiculos_activos(parqueadero_nit)
     registros = mi_operacion.registros_previos(parqueadero_nit)
 
-    conteo_carros = len([v for v in activos if str(v.get('tipo_vehiculo', '')).upper == 'CARRO'])
-    conteo_motos = len([v for v in activos if str(v.get('tipo_vehiculo', '')).upper == 'MOTO'])
+    conteo_carros = len([v for v in activos if str(v.get('tipo_vehiculo', '')).upper() == 'CARRO'])
+    conteo_motos = len([v for v in activos if str(v.get('tipo_vehiculo', '')).upper() == 'MOTO'])
     return render_template("operaciones.html", activos=activos, registros=registros, conteo_carros=conteo_carros, conteo_motos=conteo_motos)
 
 @programa.route("/operaciones/ingreso", methods=['POST'])
