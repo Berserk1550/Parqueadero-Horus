@@ -95,7 +95,7 @@ def actualizarUsuario(cedula):
         return redirect("/admin/consultar_usuario")
 
 # Eliminar usuario
-@programa.route("/admin/eliminar_usuario/<cedula>", methods=["POST"])
+@programa.route("/eliminar_usuario/<cedula>", methods=["POST"])
 def eliminarUsuario(cedula):
     mi_usuario.eliminarUsuario(cedula)
     return redirect("/admin/consultar_usuario")

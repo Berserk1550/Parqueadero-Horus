@@ -2,44 +2,54 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar Capacidades del Parqueadero</title>
-    <link rel="stylesheet" href="../static/a_espacios.css" />
+    <title>Modificar Capacidades</title>
+    <link rel="stylesheet" href="../static/a_espacios.css">
+    <script src="../static/js/alerta.js"></script>
 </head>
 <body>
-  
-  <main id="cap_par">
-    <form action="/espacios/modificar" method="post" name="form_espacio" id="form_espacio">
-    
-      <div>
-        <h1>Capacidades del Parqueadero</h1>
-        <input type="text" 
-        id="capacidad_carros" 
+
+<main id="cap_par">
+  <form action="/espacios/modificar" method="post" id="form_espacio">
+
+    <div>
+      <h2>Capacidad Carros</h2>
+      <input
+        type="text"
+        id="capacidad_carros"
         name="capacidad_carros"
-        maxlength="2000"
-        minlength="1"
-        pattern="[0-9]{1,2000}"
-        placeholder="capacidad de carros"
-        required />
-      </div>
+        pattern="[0-9]+"
+        value="{{ espacios.capacidad_carros }}"
+        required
+      >
+    </div>
 
-      <div>
-        <h1>Capacidad motos</h1>
-        <input type="text" 
+    <div>
+      <h2>Capacidad Motos</h2>
+      <input
+        type="text"
         id="capacidad_motos"
-        name="capacidad_motos" 
-        maxlength="2000"
-        minlength="1"
-        pattern="[0-9]{1,2000}"
-        placeholder="capacidad de motos" 
-        required />
-      </div>
+        name="capacidad_motos"
+        pattern="[0-9]+"
+        value="{{ espacios.capacidad_motos }}"
+        required
+      >
+    </div>
 
-      <button type="reset" id="limpiar">Limpiar</button>
-      <button type="submit" id="guardar">Guardar</button>
-    
+    <div id="con_botones">
+      <a href="/opciones" id="btn_volver" class="botones">Volver</a>
+      <button  id="guardar" class="botones" type="submit">Guardar</button>
+    </div>
+  </form>
+</main>
 
-    </form>
-  </main>
+<div id="modal-alerta" class="alerta-modal">
+  <div class="contenido-alerta">
+    <p>No has modificado ningún valor.</p>
+    <button id="btn-aceptar">Aceptar</button>
+  </div>
+</div>
+
 </body>
 </html>
+
+

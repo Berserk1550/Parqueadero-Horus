@@ -19,8 +19,11 @@ body {
 }
 
 h1 {
+    font-size: 35px;
     text-align: center;
     color: #e3fafa;
+    margin-top: 70px;
+    margin-bottom: 70px;
 }
 
 main {
@@ -30,17 +33,23 @@ main {
     align-items: center;
 }
 
+#conten_btn{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
 table {
     width: 100%;
     margin: 0;
-    background-color: #3d1a57;
+    background:#0E2780;
     border-radius: 12px;
     overflow: hidden;
     border-collapse: collapse;
 }
 
 thead {
-    background-color: #2a0f3d;
+    background:#071340;
 }
 
 thead th{
@@ -48,12 +57,12 @@ thead th{
     text-align: center;
     font-size: 16px;
     color: #e3fafa;
-    border-bottom: 2px solid #2a0f3d;
+    border-bottom: 2px solid #112f9d;
 
 }
 
 tbody tr{
-    border-bottom: 1px solid #2a0f3d;
+    border-bottom: 1px solid #112f9d;
     
 }
 
@@ -66,7 +75,7 @@ tbody td{
 }
 
 tbody tr:hover{
-    background-color: #2a0f3d;
+    background: #071750;
 }
 
 tbody tr:last-child{
@@ -87,13 +96,13 @@ a{
 }
 
 .btn_accion {
-    background: rgba(0, 6, 128, 0.9);
+    background: rgb(3, 7, 82);
     color: #e3fafa;
     border-radius: 20px;
     border: none;
     padding: 15px;
-    width: 100%;
     display: flex;
+    margin-bottom: 10px;
 }
 
 #btn_eliminar:hover{
@@ -107,12 +116,22 @@ a{
 }
 
 #btn_volver {
-    margin-left: 20px;
+    margin-left: 170px;
     width: max-content;
 }
 
 #btn_volver:hover {
     background-color: blue;
+    color: #e3fafa;
+}
+
+#btn_agregar{
+    margin-right: 170px;
+    width: max-content;
+}
+
+#btn_agregar:hover{
+    background-color: green;
     color: #e3fafa;
 }
 
