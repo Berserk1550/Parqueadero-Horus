@@ -16,7 +16,10 @@ def opciones():
         return redirect("/")
     
 
+print("Rutas registradas:")
+for rule in programa.url_map.iter_rules():
+    print(rule, rule.methods)
 
 
 if __name__=="__main__":
-    programa.run(debug=True, port=5080)
+    programa.run(debug=True, port=5080) 

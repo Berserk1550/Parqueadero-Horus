@@ -11,8 +11,8 @@ def operaciones():
     activos = mi_operacion.vehiculos_activos(parqueadero_nit)
     registros = mi_operacion.registros_previos(parqueadero_nit)
 
-    conteo_carros = len([v for v in activos if v.get('tipo_vehiculo') == 'carro'])
-    conteo_motos = len([v for v in activos if v.get('tipo_vehiculo') == 'moto'])
+    conteo_carros = len([v for v in activos if str(v.get('tipo_vehiculo', '')).upper() == 'CARRO'])
+    conteo_motos = len([v for v in activos if str(v.get('tipo_vehiculo', '')).upper() == 'MOTO'])
     return render_template("operaciones.html", activos=activos, registros=registros, conteo_carros=conteo_carros, conteo_motos=conteo_motos)
 
 @programa.route("/operaciones/ingreso", methods=['POST'])
@@ -27,21 +27,31 @@ def ingreso():
     
     if len(vehiculo_placa) !=6:
         return jsonify({"ok": False, "error": "placa_invalida", "mensaje": "La placa debe tener 6 caracteres"}), 400
-    if not all(c.isalpha() for c in vehiculo_placa[:3]):
-        return jsonify({"ok": False, "error": "placa_invalida", "mensaje": "Los primeros 3 caracteres deben ser letras"}), 400
-    if not all(c.isalnum() for c in vehiculo_placa[3:]):
-        return jsonify({ "ok": False, "error": "placa_invalida", "mensaje": "Los últimos 3 caracteres deben ser letras o números (A-Z, 0-9). "}), 400
+    if tipo_vehiculo == "CARRO":
+        if not all(c.isalpha() for c in vehiculo_placa[:3]):
+            return jsonify({"ok": False, "error": "placa_invalida", "mensaje": "Para Carro Los primeros 3 caracteres deben ser letras"}), 400
+        if not all(c.isdigit() for c in vehiculo_placa[3:]):
+            return jsonify({ "ok": False, "error": "placa_invalida", "mensaje": "Los últimos 3 caracteres deben ser números (0-9). "}), 400
+    elif tipo_vehiculo == "MOTO":
+        if not all(c.isalpha() for c in vehiculo_placa[:3]):
+            return jsonify({"ok": False, "error": "placa_invalida", "mensaje": "Para Moto Los primeros 3 caracteres deben ser letras"}), 400  
+        if not all(c.isdigit() for c in vehiculo_placa[3:5]):
+            return jsonify({"ok": False, "error": "placa_invalida", "mensaje": "Ls caracteres 4 y 5 para moto deben ser números."}), 400
+        if not vehiculo_placa[5].isalpha():
+            return jsonify({"ok": False, "error": "placa_invalida", "mensaje": "El ultimo caracter en la placa de moto debe ser Letra (A-Z)"}), 400
+    else:
+        return jsonify({"ok": False, "error": "tipo_invalido", "mensaje": "Tipo de vehicu.o no reconocido"}), 400
     
     sql_check = """SELECT COUNT(*) AS total FROM registros WHERE vehiculo_placa=%s AND parqueadero_nit=%s AND fecha_salida IS NULL"""
     mi_cursor.execute(sql_check, (vehiculo_placa, parqueadero_nit))
     resultado = mi_cursor.fetchone()
     if resultado['total'] > 0:
-        return jsonify({"ok": False, "error": "ya_activo"}), 409
+        return jsonify({"ok": False, "error": "ya_activo"}),409
     
     tarifas = mi_tarifa.consultarTarifas(parqueadero_nit)
-    tarifa_usada = next((t for t in tarifas if t['tipo_vehiculo'] == tipo_vehiculo), None)
+    tarifa_usada = next((t for t in tarifas if str(t['tipo_vehiculo']).upper() == tipo_vehiculo), None)
     if not tarifa_usada:
-        return jsonify({"ok": False, "error": "sin_tarifa"}), 405
+        return jsonify({"ok": False, "error": "sin_tarifa"}), 404
     
     sql_insert = """INSERT INTO registros (vehiculo_placa, usuario_cedula, parqueadero_nit, fecha_ingreso, activo, tarifa_id) VALUES (%s,%s,%s, NOW(), 'activo', %s)"""
     mi_cursor.execute(sql_insert, (vehiculo_placa, usuario_cedula, parqueadero_nit, tarifa_usada['id_tarifas']))
@@ -71,7 +81,7 @@ def salida():
     tarifas = mi_tarifa.consultarTarifas(parqueadero_nit)
     tarifa_usada = next((t for t in tarifas if t['id_tarifas'] == tarifa_id), None)
     if not tarifa_usada:
-        return jsonify({"ok": False, "error": "sin_tarifa"}), 405
+        return jsonify({"ok": False, "error": "sin_tarifa"}), 404
     
     valor_base = tarifa_usada['valor_tarifa']
     if minutos <=60 and tarifa_usada['tipo_tarifa'] == 'primera_hora':
@@ -82,7 +92,7 @@ def salida():
     else:
         total = valor_base
         
-    sql_update = """UPDATE registros SET fecha_Salida = NOW(), total = %s, activo='inactivo', tarifa_id=%s WHERE id_registros=%s"""
+    sql_update = """UPDATE registros SET fecha_salida = NOW(), total = %s, activo='inactivo', tarifa_id=%s WHERE id_registros=%s"""
     mi_cursor.execute(sql_update,(total, tarifa_id, id_registros))
     mi_db.commit()
     

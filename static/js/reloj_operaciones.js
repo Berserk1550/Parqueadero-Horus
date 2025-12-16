@@ -10,7 +10,7 @@ function actualizarReloj() {
   }
 }
 
-// Espera a que el DOM esté listo
+// Espera a que el DOM esté listo----
 document.addEventListener("DOMContentLoaded", () => {
   actualizarReloj();
   setInterval(actualizarReloj, 1000);
