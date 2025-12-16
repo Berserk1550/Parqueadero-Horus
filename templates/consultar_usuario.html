@@ -46,8 +46,10 @@
                                 <button type="submit" id="btn_modificar" class="btn_accion">Modificar</button>
                             </form>
 
-                            <form action="/admin/eliminar_usuario/{{ u['cedula'] }}" method="post" class="form-eliminar">
-                                    <button type="button" id="btn_eliminar" class="btn_accion">Eliminar</button>
+                            <form action="/eliminar_usuario/{{ u['cedula'] }}" method="post" class="form-eliminar">
+                                <button type="submit" id="btn_eliminar" class="btn_accion">
+                                    Eliminar
+                                </button>
                             </form>
                         </td>
                     </tr>

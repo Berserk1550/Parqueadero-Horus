@@ -30,7 +30,6 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100vh;
- 
 }
 
 body {
@@ -38,9 +37,8 @@ body {
   position: relative;
 }
 
-
-h1{
-    font-size: 20px;
+h2 {
+    font-size: 25px;
     color: #e3fafa;
 }
 
@@ -51,9 +49,16 @@ main#cap_par {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 15px;
 }
 
+/* =========================
+   FORMULARIO
+   ========================= */
+#form_espacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 #form_espacio input{
     background: rgb(14, 0, 48);
@@ -61,76 +66,122 @@ main#cap_par {
 }
 
 #form_espacio input::placeholder {
-  color: #e3fafa;       
+  color: #e3fafa;
   font-family: inherit;
   font-size: 19px;
 }
 
-
-
-input#capacidad_carros{
-    border-radius: 20px 20px 20px 20px;
-    padding: 20px 30px 20px 30px;
-    color: #e3fafa;
-}
-
+input#capacidad_carros,
 input#capacidad_motos{
-    border-radius: 20px 20px 20px 20px;
-    padding: 20px 30px 20px 30px;
+    border-radius: 20px;
+    padding: 20px 30px;
     color: #e3fafa;
+    font-size: 20px;
 }
 
-button{
-    margin-top: 20px;
-    background: rgba(0, 6, 128, 0.9);
-    color: #e3fafa;
-    font-size: 25px;
-    border: none;
-    cursor: pointer;
+/* =========================
+   BOTONES
+   ========================= */
+#con_botones{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 30px;
 }
 
-#form_espacio button#guardar{
-    padding: 5px 5px 5px 5px;
-    border-radius: 10px 10px 10px 10px;
+.botones {
+  background: rgba(0, 6, 128, 0.9);
+  color: #e3fafa;
+  border-radius: 15px;
+  border: none;
+  padding: 12px 30px;
+  font-size: 22px;
+  cursor: pointer;
+  text-decoration: none;
+  min-width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#form_espacio button#limpiar{
-    padding: 5px 5px 5px 5px;
-    border-radius: 10px 10px 10px 10px;
-    margin-left: 30px;
+.botones:hover {
+  background: green;
+  color: #e3fafa;
+}
+
+#btn_volver:hover{
+  background-color: blue;
+  color: #e3fafa;
+}
+
+/* ==========================
+   MODAL ALERTA BONITA
+   ========================== */
+
+.alerta-modal {
+  display: none; /* OCULTO por defecto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.contenido-alerta {
+  background-color: #ffffff;
+  padding: 25px 35px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  max-width: 400px;
+}
+
+.contenido-alerta p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.contenido-alerta button {
+  background-color: #0a1080; /* azul */
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.contenido-alerta button:hover {
+  background-color: #1f6391;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media screen and (max-width: 600px) {
+  #con_botones {
+    flex-direction: column;
+  }
 }
 
 @media screen and (min-width: 1200px) {
- 
-main#form_espacio {
-    height: 100vh;
-    flex-direction: column-reverse;
-}
 
-input#capacidad_carros{
-   font-size: 20px; 
-   padding: 30px;
-   border-radius: 30px;
-  }
-input#capacidad_motos{
-   font-size: 20px; 
-   padding: 30px;
-   border-radius: 30px;
+  input#capacidad_carros,
+  input#capacidad_motos{
+     font-size: 24px;
+     padding: 30px;
+     border-radius: 30px;
   }
 
-button{
-    margin-top: 20px;
-    background: rgba(0, 6, 128, 0.9);
-    color: #e3fafa;
-    font-size: 30px;
-    border: none;
-    cursor: pointer;
-    margin-left: 20px;
+  .botones{
+    font-size: 26px;
+    padding: 15px 40px;
   }
-  #form_espacio input::placeholder {
-  color: #e3fafa;       
-  font-family: inherit;
-  font-size: 27px;
-}
-
 }

@@ -24,29 +24,30 @@ def consultarEspacio():
 # -----------------------------------------
 @programa.route("/espacios/modificar", methods=["GET", "POST"])
 def modificar_espacios():
-    if session.get("login") == True:
-        if request.method == "GET":
-            # Si es GET, solo muestra el formulario para agregar o modificar espacios
-            return render_template("agregar_espacios.html")
-        
-        if request.method == "POST":
-            # Si es POST, significa que se enviaron los datos del formulario
-            
-            # Obtiene el NIT del parqueadero desde la sesión
-            nit = session.get("parqueadero_nit")
-            
-            # Obtiene las capacidades enviadas por el formulario y las convierte a enteros
-            capacidad_carro = int(request.form["capacidad_carros"])
-            capacidad_motos = int(request.form["capacidad_motos"])
 
-            # Llama a la función que actualiza las capacidades en la base de datos
-            datos = mi_parqueadero.modificarEspacios(
-                nit,
-                capacidad_carro,
-                capacidad_motos
-            )
-
-        # Redirige de nuevo a la página principal del parqueadero después de modificar
-        return redirect("/parqueadero")
-    else:
+    if not session.get("login"):
         return redirect("/")
+
+    nit = session.get("parqueadero_nit")
+
+    if request.method == "GET":
+        espacios = mi_parqueadero.consultarEspacios(nit)
+
+        return render_template(
+            "agregar_espacios.html",
+            espacios=espacios
+        )
+
+    if request.method == "POST":
+        capacidad_carro = int(request.form["capacidad_carros"])
+        capacidad_motos = int(request.form["capacidad_motos"])
+
+        mi_parqueadero.modificarEspacios(
+            nit,
+            capacidad_carro,
+            capacidad_motos
+        )
+
+        return redirect("/opciones")
+
+

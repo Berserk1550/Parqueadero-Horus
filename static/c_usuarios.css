@@ -21,6 +21,8 @@ body {
 h1 {
     text-align: center;
     color: #e3fafa;
+    margin-top: 75px;
+    margin-bottom: 75px;
 }
 
 #conten_btn{
@@ -39,14 +41,14 @@ main {
 table {
     width: 100%;
     margin: 0;
-    background-color: #3d1a57;
+    background-color:#0E2780;
     border-radius: 12px;
     overflow: hidden;
     border-collapse: collapse;
 }
 
 thead {
-    background-color: #2a0f3d;
+    background-color: #071340;
 }
 
 thead th{
@@ -54,12 +56,12 @@ thead th{
     text-align: center;
     font-size: 16px;
     color: #e3fafa;
-    border-bottom: 2px solid #2a0f3d;
+    border-bottom: 2px solid #112f9d;
 
 }
 
 tbody tr{
-    border-bottom: 1px solid #2a0f3d;
+    border-bottom: 1px solid #112f9d;
     
 }
 
@@ -72,7 +74,7 @@ tbody td{
 }
 
 tbody tr:hover{
-    background-color: #2a0f3d;
+    background-color: #071750;
 }
 
 tbody tr:last-child{

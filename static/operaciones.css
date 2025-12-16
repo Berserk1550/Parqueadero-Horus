@@ -62,7 +62,7 @@ main#padre_ppal {
 
 #tlo {
   text-align: center;
-
+  font-size: 35px;
   color: #e3fafa;
 }
 
@@ -75,7 +75,7 @@ main#padre_ppal {
   gap: 40px; /* Espacio entre botones */
   margin-bottom: 20px;
   border: none;
-  min-width: 80px;
+  min-width: 150px;
 }
 
 .icono-accion {
@@ -95,9 +95,9 @@ main#padre_ppal {
 }
 
 .icono-accion img {
-  width: 40px;
+  width: 80px;
   border: none;
-  height: 40px;
+  height: 80px;
   display: block;
   margin: 0 auto 5px;
 }
@@ -151,6 +151,17 @@ input {
   border-radius: 20px;
   margin: 15px;
 }
+
+
+
+#registrar_ingreso {
+  margin-right: 20px; /* separa hacia la derecha */
+}
+
+#liberar_salida {
+  margin-left: 20px; /* separa hacia la izquierda */
+}
+
 
 #ventana_proceso button {
   background-color: #a29880; 
@@ -256,6 +267,46 @@ table tr:nth-child(even) {
 }
 
 
+.alerta-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 9999;
+}
+
+.contenido-alerta {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-family: sans-serif;
+  max-width: 400px;
+}
+
+.contenido-alerta p {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+.contenido-alerta button {
+  background-color: #4d0080;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contenido-alerta button:hover {
+  background-color: #1f6391;
+}
+
+
 
 
 @media screen and (max-width: 1024px) {
@@ -264,7 +315,8 @@ table tr:nth-child(even) {
     display: flex;
   }
   .icono-accion{
-    padding: 25px 50px;
+    padding: 125px 100px;
+    margin-top: 300px;
   }
   .contador {
     padding: 25px 50px;
@@ -290,10 +342,11 @@ table tr:nth-child(even) {
     height: 300px;
   }
   #tlo{
-    margin-top: 50px;
+    margin-top: 25px;
   }
   .icono-accion{
-    padding: 25px 50px;
+    margin-top: 45px;
+    padding: 100px 100px;
   }
   .contador {
     padding: 25px 50px;

@@ -9,16 +9,34 @@ document.addEventListener("DOMContentLoaded", function () {
   const registrarBtn = document.getElementById("registrar_ingreso");
   const liberarBtn = document.getElementById("liberar_salida");
   const placaInput = formOperacion.querySelector("input[name='vehiculo_placa']");
+  const btnAceptar = document.getElementById("btn_alerta_aceptar");
+
+  // Guardar el alert original por si lo necesitas
+  window.nativeAlert = window.alert;
+
+  // Sobrescribir alert con versión estilizada
+  window.alert = function(mensaje) {
+    document.getElementById("mensaje_alerta").textContent = mensaje;
+    document.getElementById("alerta_estilizada").style.display = "flex";
+  };
+
+  // Función para cerrar el modal al dar clic en Aceptar
+  function cerrarAlerta() {
+    document.getElementById("alerta_estilizada").style.display = "none";
+  }
+
+  // Asociar el botón aceptar
+  if (btnAceptar) {
+    btnAceptar.addEventListener("click", cerrarAlerta);
+  }
 
   // --- Funciones auxiliares ----
   function abrirModalOperacion(tipo) {
     modal.style.display = "flex";
-    tipoVehiculoInput.value = tipo.toUpperCase(); // siempre enviar CARRO/MOTO
-    placaInput.value = ""; // limpiar input al abrir
+    tipoVehiculoInput.value = tipo.toUpperCase();
+    placaInput.value = "";
     placaInput.disabled = false;
-    placaInput.ariaReadOnly = false;
     placaInput.focus();
-    console.log("DEBUG tipo enviado:", tipoVehiculoInput.value);
   }
 
   function cerrarModalOperacion() {
@@ -63,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    placaInput.value = placa; // normalizar a mayúsculas
+    placaInput.value = placa;
     return true;
   }
 
@@ -113,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch("/operaciones/ingreso", { method: "POST", body: formData });
       const data = await response.json();
-      console.log("DEBUG ingreso:", data);
       if (response.ok && data.ok) {
         alert("Ingreso registrado: " + data.vehiculo_placa);
         cerrarModalOperacion();
@@ -123,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Error al registrar ingreso: " + (data.error || "Error desconocido"));
       }
     } catch (error) {
-      console.error("Error de conexión al registrar ingreso:", error);
       alert("Error de conexión al registrar ingreso");
     } finally {
       unlock();
@@ -155,7 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Error al registrar salida: " + (data.error || "Error desconocido"));
       }
     } catch (error) {
-      console.error("Error de conexión al registrar salida:", error);
       alert("Error de conexión al registrar salida");
     } finally {
       unlock();
