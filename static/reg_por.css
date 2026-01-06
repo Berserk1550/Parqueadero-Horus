@@ -1,0 +1,112 @@
+*{
+    box-sizing: border-box;
+    transition: all 0.8s;
+}
+
+::placeholder,
+::-moz-placeholder,
+::-webkit-input-placeholder {
+  color: inherit;
+  font-family: inherit;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+figure img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+body{
+    background: url("../static/imagenes/fondo3.jpg") center center / cover no-repeat;
+    position : relative;
+}
+
+main#padre_ppal{
+  background:  rgba(227, 250, 250, 0);
+  height: 90vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#forma_registro input::placeholder {
+  color: #e3fafa;       
+  font-family: inherit;
+  font-size: 19px;
+}
+
+#padre_ppal #tlo{
+    color: #e3fafa;
+    text-align: center;
+}
+
+.cont-campos input{
+  background:rgba(14, 0, 48, 0.9);
+  color: #e3fafa;
+  padding: 20px; 
+  border-radius: 20px;
+  height: 7vh;
+  border: none;
+}
+#cont_contenido {
+  display: flex;
+  flex-direction: column;            
+  align-items: center; 
+  gap: 18px;   
+}
+
+.cont-campos{
+  display: flex;
+  gap: 0px 10px;
+}
+
+a{
+  text-decoration: none;
+  text-align: center;
+}
+
+.botones{
+  background: rgba(0, 6, 128, 0.9);
+  color: #e3fafa;
+  border-radius: 20px;
+  border: none;
+  margin-top: 20px;
+  padding: 15px;
+  width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  #cont_contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px 60px;              
+    justify-items: center;         
+  }
+
+  .cont-campos input {
+    align-items: center;
+    background: rgba(14, 0, 48, 0.9);
+    display: flex;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+    text-align: center;
+
+  }
+
+  #btn_continuar:hover{
+    background-color: green;
+  }
+
+}
