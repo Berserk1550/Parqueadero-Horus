@@ -1,17 +1,18 @@
-function actualizarReloj() {
-  const ahora = new Date();
-  let horas = ahora.getHours().toString().padStart(2, '0');
-  let minutos = ahora.getMinutes().toString().padStart(2, '0');
-  let segundos = ahora.getSeconds().toString().padStart(2, '0');
-  
-  const spanHora = document.getElementById("hora_actual");
-  if (spanHora) {
-    spanHora.textContent = `${horas}:${minutos}:${segundos}`;
-  }
+function actualizarFechaHora() {
+    const ahora= new Date();
+    //fecha
+    const opcionesFecha ={weekday: 'long', year: 'numeric', month:'long', day:'numeric'};
+    const fechaFormateada= ahora.toLocaleDateString('es-ES', opcionesFecha) ;
+    //hora
+    let horas = ahora.getHours();
+    const minutos = String(ahora.getMinutes()).padStart(2,'0');
+    const ampm = horas>=12 ? 'PM' : 'AM';
+    horas = horas %12;
+    horas = horas ? horas:12;
+    const horaFormateada = `${horas}:${minutos}:${ampm}`;
+    //Dom
+    document.getElementById("fecha_actual").textContent = `Hoy es ${fechaFormateada}`;
+    document.getElementById("hora_actual").textContent = `y son las ${horaFormateada}`;
 }
-
-// Espera a que el DOM esté listo----
-document.addEventListener("DOMContentLoaded", () => {
-  actualizarReloj();
-  setInterval(actualizarReloj, 1000);
-});
+setInterval(actualizarFechaHora, 1000);
+actualizarFechaHora();

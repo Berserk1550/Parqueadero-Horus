@@ -1,137 +1,112 @@
-/* Reset y base */
+/* Reset básico */
 * {
-  box-sizing: border-box;
-  transition: all 0.8s;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.8s;
 }
 
-::placeholder,
-::-moz-placeholder,
-::-webkit-input-placeholder {
-  color: inherit;
-  font-family: inherit;
-}
-
-a {
-  display: block;
-  text-decoration: none;
-}
-
-figure {
-  margin: 0;
-  padding: 0;
-}
-figure img {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-/* Layout general */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  overflow: hidden;
-}
-
+/* Fondo general */
 body {
-  background: url("../static/imagenes/fondo3.jpg") center center / cover no-repeat;
-  position: relative;
-  z-index: 1;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2f5f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Contenedor principal con glassmorfismo */
-main#padre_ppall {
-  background: rgba(227, 250, 250, 0);
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+/* Contenedor principal */
+.login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-#padre_ppall #tlo {
-  color: #e3fafa;
-  text-align: center;
+/* Tarjeta */
+.login-card {
+    width: 900px;
+    height: 520px;
+    background-color: #ffffff;
+    display: flex;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Panel izquierdo */
+.login-left {
+    width: 45%;
+    background-image: url("../static/imagenes/fondo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+
+/* Panel derecho */
+.login-right {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Encabezado */
+.login-header h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #333;
 }
 
 /* Formulario */
-form#form_acceso {
-  position: relative;
-  margin: 0 auto;
-  top: auto;
-  left: auto;
-  transform: none;
-  z-index: 6;
-}
-
-#form_acceso input::placeholder {
-  color: #e3fafa;       
-  font-family: inherit;
-}
-
-
-/* Campos */
-#form_acceso .cont-campos {
-  position: relative;
-  width: 330px;
-  margin-right: -100px;
-}
-
-#form_acceso input {
-  background: rgba(14, 0, 48, 0.9);
-  color: #e3fafa;
-  border: none;
-  font-size: 0.9em;
-  padding: 10px;
-  position: relative;
-}
-
-/* Contenedor de inputs y botones */
-#cont_contenido {
-  width: 100%;
-  max-width: 420px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-/* Campo de cédula */
-#form_acceso input#Usuario_C {
-  border-radius: 20px;
-  padding: 20px 30px;
-  width: 70%;
-}
-
-/* Botón de entrada */
-#form_acceso #btn_Entrar {
-  background: rgba(0, 6, 128, 0.9);
-  color: #e3fafa;
-  border-radius: 20px;
-  border: none;
-  padding: 15px;
-  width: 150px;
-}
-
-/* Estilos para pantallas grandes */
-@media screen and (min-width: 1200px) {
-  #padre_ppall #tlo {
-    margin-right: 0;
-  }
-
-  form#form_acceso {
-    margin-bottom: 0;
-    width: 65%;
+.login-form {
+    width: 70%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 24px;
-  }
+}
 
-  #form_acceso #cont_contenido {
-    position: relative;
-    left: auto;
-  }
+/* Grupo input */
+.input-group {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #2f5fd7;
+}
+
+/* Botón */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2f5fd7;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    background-color: #244bb5;
 }

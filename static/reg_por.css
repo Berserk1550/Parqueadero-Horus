@@ -1,112 +1,113 @@
-*{
+* {
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
     transition: all 0.8s;
 }
 
-::placeholder,
-::-moz-placeholder,
-::-webkit-input-placeholder {
-  color: inherit;
-  font-family: inherit;
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #eef3f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-figure {
-  margin: 0;
-  padding: 0;
+/* Contenedor principal */
+#padre_ppal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-figure img {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+/* Sección funcional */
+#zona_funcional {
+    width: 100%;
+    max-width: 600px;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-}
-
-body{
-    background: url("../static/imagenes/fondo3.jpg") center center / cover no-repeat;
-    position : relative;
-}
-
-main#padre_ppal{
-  background:  rgba(227, 250, 250, 0);
-  height: 90vh;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#forma_registro input::placeholder {
-  color: #e3fafa;       
-  font-family: inherit;
-  font-size: 19px;
-}
-
-#padre_ppal #tlo{
-    color: #e3fafa;
+/* Título */
+#tlo {
     text-align: center;
+    color: #1f3c88;
+    font-size: 30px;
+    margin-bottom: 25px;
 }
 
-.cont-campos input{
-  background:rgba(14, 0, 48, 0.9);
-  color: #e3fafa;
-  padding: 20px; 
-  border-radius: 20px;
-  height: 7vh;
-  border: none;
+/* Tarjeta del formulario */
+#forma_registro {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
 }
+
+/* Contenedor de campos */
 #cont_contenido {
-  display: flex;
-  flex-direction: column;            
-  align-items: center; 
-  gap: 18px;   
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.cont-campos{
-  display: flex;
-  gap: 0px 10px;
+/* Cada campo */
+.cont-campos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Inputs */
+.cont-campos input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid #cfd8e3;
+    font-size: 15px;
+}
+
+.cont-campos input:focus {
+    outline: none;
+    border-color: #1f3c88;
 }
 
 a{
-  text-decoration: none;
-  text-align: center;
+  padding: 0;
 }
 
-.botones{
-  background: rgba(0, 6, 128, 0.9);
-  color: #e3fafa;
-  border-radius: 20px;
-  border: none;
-  margin-top: 20px;
-  padding: 15px;
-  width: 100%;
-}
-
-@media screen and (min-width: 1200px) {
-  #cont_contenido {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px 60px;              
-    justify-items: center;         
-  }
-
-  .cont-campos input {
-    align-items: center;
-    background: rgba(14, 0, 48, 0.9);
-    display: flex;
-    padding: 20px;
-    border-radius: 20px;
+/* Botones */
+.botones {
+    background: #2f5fd7;
+    color: #ffffff;
+    text-decoration: none;
     border: none;
-    text-align: center;
-
-  }
-
-  #btn_continuar:hover{
-    background-color: green;
-  }
-
+    padding: 14px 40px;
+    border-radius: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
+
+.botones:hover {
+    background: #163172;
+}
+
+/* Contenedor botones */
+/* Contenedor de los botones */
+.cont-campos:last-child {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Normalizar <a> y <button> */
+.cont-campos:last-child a,
+.cont-campos:last-child button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 48px;
+}
+
+

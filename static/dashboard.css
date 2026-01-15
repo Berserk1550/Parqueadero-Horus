@@ -1,4 +1,3 @@
-/* Reset y base */
 * {
     box-sizing: border-box;
     transition: all 0.3s;
@@ -7,93 +6,79 @@
 html, body {
     margin: 0;
     padding: 0;
-    
-    height: 100vh;
     font-family: system-ui, sans-serif;
-    background: url("../static/imagenes/fondo3.jpg") center center / cover no-repeat;
-    color: #e3fafa;
-}
-
-/* Dashboard layout */
-main.dashboard {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px 20px;
-    max-width: 300px;
-    margin: auto;
+    color: #E1EAEA;
+    background-color: #E1EAEA;
 }
 
 #cerrar_sesion {
-    text-decoration: none;
-    background-color: #f33;
-    color: blanchedalmond;
-    padding: 18px;
-    border-radius: 10px;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    text-align: center;
-}
-
-/* Tarjetas */
-.card {
-    background: rgba(14, 0, 48, 1);
-    border-radius: 20px;
-    padding: 25px;
-    width: 280px;
-    text-align: center;
-
-}
-
-/* Botones tipo enlace */
-.card a {
-    display: inline-block;
-    padding: 14px 20px;
-    border-radius: 20px;
-    background: rgba(0, 6, 128, 1);
-    color: #e3fafa;
-    text-decoration: none;    
-    margin-top: 10px;
-    text-align: center;
-}
-
-.card a:hover {
-    background: rgba(0, 6, 128, 1);
-    color: #ffd700;
-}
-
-/* Select estilizado */
-.card select {
-    padding: 20px;
-    border-radius: 20px;
-    background: rgba(14, 0, 48, 0.9);
-    color: #e3fafa;
-    border: none;
-    font-size: 20px;
-    margin-top: 10px;
-    text-align: center;
+    position: fixed;        /* Se queda fijo en la pantalla */
+    top: 0;                 /* Desde arriba */
+    left: 0;                /* Pegado al borde izquierdo */
+    width: 220px;           /* Ancho de la franja/botón */
+    height: 100%;           /* Ocupa toda la altura de la ventana */
+    background-color: #042871;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;          /* Para centrar el texto */
+    align-items: center;    /* Centrado vertical */
+    justify-content: center;/* Centrado horizontal */
+    text-decoration: none;  /* Quita subrayado */
     cursor: pointer;
 }
-
-.card label {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    display: block;
+#cerrar_sesion:hover {
+    background-color: darkred;
 }
 
-@media screen and (min-width: 1200px) {
-    main.dashboard {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        padding: 40px 20px;
-        max-width: 1200px;
-        margin-top: 200px;
-    }
-    html, body {
-        overflow: hidden;
-    }
-    }
+
+/* ===== Contenedor principal ===== */
+.dashboard {
+    margin-left: 350px;
+    margin-top: 190px;
+    display: grid;                          /* Usamos grid */
+    grid-template-columns: repeat(2, 1fr);  /* 2 columnas */
+    gap: 50px;                              /* espacio entre tarjetas */
+}
+
+/* ===== Tarjetas ===== */
+.servicios, .empleados, .parqueo, .tarifas {
+    background-color: #2f5fd7;
+    border-radius: 90px;
+    border: 3px solid #191919;
+    padding: 35px;
+    min-height: 125px;
+    width: 350px;
+}
+/* ===== Hipervínculos dentro de las tarjetas ===== */
+.servicios a,
+.empleados a,
+.parqueo a,
+.tarifas a {
+    color: white;             /* color del texto del enlace */
+    font-size: 30px;          /* tamaño de fuente */
+    font-weight: bold;        /* negrita */
+    text-decoration: none;    /* quita el subrayado */
+    display: block;           /* hace que ocupe todo el ancho de la tarjeta */
+    text-align: center;       /* centra el texto */
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .dashboard {
+    margin-left: 0;
+    padding: 20px;
+  }
+  .header {
+    margin-left: 0;
+    padding: 20px;
+  }
+}

@@ -8,55 +8,58 @@
 </head>
 <body>
 
-    <h1>Porteros Registrados</h1>
+    <header>
+        <h1>Porteros Registrados</h1>
+    </header>
 
     <main>
-        <form id="conten_btn">
-            <a href="/opciones" id="btn_volver" class="btn_accion">Volver</a>
-            <a href="/admin/agregar_usuario" id="btn_agregar" class="btn_accion">Crear Portero</a>
-        </form>
-        <section>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Cédula</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Correo</th>
-                        <th>Teléfono</th>
-                        <th>Tel. Emergencia</th>
-                        <th>Fecha Registro</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
+        <div class="contenedor-tabla">
+            <div id="conten_btn">
+                <a href="/opciones" id="btn_volver" class="btn_accion">Volver</a>
+                <a href="/admin/agregar_usuario" id="btn_agregar" class="btn_accion">Crear Portero</a>
+            </div>
 
-                <tbody>
-                    {% for u in usuarios %}
-                    <tr>
-                        <td>{{ u['cedula'] }}</td>
-                        <td>{{ u['nombres'] }}</td>
-                        <td>{{ u['apellidos'] }}</td>
-                        <td>{{ u['correo'] }}</td>
-                        <td>{{ u['telefono'] }}</td>
-                        <td>{{ u['tel_emergencia'] }}</td>
-                        <td>{{ u['fecha_registro'] }}</td>
+            <section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cédula</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Tel. Emergencia</th>
+                            <th>Fecha Registro</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
 
-                        <td id="campo_btn">
-                            <form action="/modificar_usuario/{{ u['cedula'] }}" method="get">
-                                <button type="submit" id="btn_modificar" class="btn_accion">Modificar</button>
-                            </form>
+                    <tbody>
+                        {% for u in usuarios %}
+                        <tr>
+                            <td>{{ u['cedula'] }}</td>
+                            <td>{{ u['nombres'] }}</td>
+                            <td>{{ u['apellidos'] }}</td>
+                            <td>{{ u['correo'] }}</td>
+                            <td>{{ u['telefono'] }}</td>
+                            <td>{{ u['tel_emergencia'] }}</td>
+                            <td>{{ u['fecha_registro'] }}</td>
 
-                            <form action="/eliminar_usuario/{{ u['cedula'] }}" method="post" class="form-eliminar">
-                                <button type="submit" id="btn_eliminar" class="btn_accion">
-                                    Eliminar
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
+                            <td id="campo_btn">
+                                <form action="/modificar_usuario/{{ u['cedula'] }}" method="get">
+                                    <button type="submit" id="btn_modificar" class="btn_accion">Modificar</button>
+                                </form>
+
+                                <form action="/eliminar_usuario/{{ u['cedula'] }}" method="post" class="form-eliminar">
+                                    <button type="submit" id="btn_eliminar" class="btn_accion">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
     </main>
 
 </body>

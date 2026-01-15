@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iniciar Sesión</title>
-  <link rel="stylesheet" href="../static/inicio.css" />
-
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="../static/inicio.css">
 </head>
-<body>
-  <main id="padre_ppall">
-      <h1 id="tlo">Ingrese sus Datos</h1>
-    
-    <form action="/login" method="post" name="form_acceso" id="form_acceso">
-      <div id="cont_contenido">  
-        <div class="cont-campos" id="cedula">
-            
-          <input
-            type="text"
-            name="Usuario_C"
-            id="Usuario_C"
-            maxlength="10"
-            minlength="6"
-            pattern="[0-9]{6,10}"
-            title="Lo que estas escribiendo no son numeros"
-            placeholder="Cédula de Ciudadanía"
-            required
-            inputmode="numeric"
-            tabindex="2"
-          />
-        </div>
 
-        <button href="" id="btn_Entrar">ENTRAR</button>
-        
-      </div>
-    </form>
-  </main>
+<body>
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <!-- Panel izquierdo -->
+            <aside class="login-left">
+                <!-- Solo decorativo -->
+            </aside>
+
+            <!-- Panel derecho -->
+            <section class="login-right">
+                <header class="login-header">
+                    <h1>Hola de nuevo</h1>
+                </header>
+
+                <form class="login-form" action="/login" method="post">
+                    <div class="input-group">
+                        <label for="identificacion">Número de identificación</label>
+                                  <input
+                                    type="text"
+                                    name="Usuario_C"
+                                    id="Usuario_C"
+                                    maxlength="10"
+                                    minlength="10"
+                                    pattern="[0-9]{10,10}"
+                                    title="Lo que estas escribiendo no son numeros"
+                                    required
+                                    inputmode="numeric"
+                                    tabindex="2"
+                                  />
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        Iniciar sesión
+                    </button>
+                </form>
+            </section>
+
+        </section>
+
+    </main>
 </body>
 </html>

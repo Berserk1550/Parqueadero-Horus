@@ -4,18 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Procesos</title>
-  <link rel="stylesheet" href="../static/operaciones.css">
-  <script src="../static/js/reloj_operaciones.js"></script>
-  <script src="../static/js/emergente-ven.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='operaciones.css') }}">
+  
 </head>
 <body>
 
   <main id="padre_ppal">
     <header id="barra_superior">
-      <section id="reloj">
+      <span id="bienvenida">Hola {{ usuario }}</span>
+      <div id="reloj">
+        <span id="fecha_actual"></span>
         <span id="hora_actual"></span>
-      </section>
+      </div>
+      <button id="cerrar_sesion">Cerrar Sesión</button>
     </header>
+  </main>
+
 
     <h1 id="tlo">Procesos de Ingreso y Egreso</h1>
 
@@ -23,15 +27,25 @@
     <section id="zona_funcional">
 
       <!-- Iconos de acción -->
-      <div id="grupo_iconos">
+      <div id="grupo_iconos"> <!-- Botón Carro -->
         <button type="button" id="btn_carro" class="icono-accion">
-          <img src="../static/imagenes/carro.svg" alt="Icono de carro">
-          <span>Carro</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet" class="icono-svg">
+            <g transform="translate(0,512) scale(0.1,-0.1)" fill="currentColor" stroke="none">
+              <path d="M1390 3663 c-14 -10 -32 -26 -41 -38 -9 -11 -26 -31 -38 -44 -21 -24 -25 -35 -22 -58 1 -7 -5 -13 -12 -13 -20 0 -27 -22 -27 -80 0 -59 33 -104 88 -120 20 -5 106 -10 190 -10 128 0 152 -2 152 -15 0 -10 10 -15 34 -15 21 0 36 6 40 15 4 13 36 15 196 15 162 0 190 -2 190 -15 0 -11 11 -15 40 -15 29 0 40 4 40 15 0 13 23 15 145 15 90 0 145 4 145 10 0 6 95 10 265 10 l265 0 0 33 c0 17 -9 51 -20 75 l-19 42 36 0 c35 0 36 0 18 20 -18 20 -32 20 -764 22 l-746 2 590 7 c325 3 633 7 685 8 l95 2 -47 21 c-27 11 -48 26 -48 33 0 26 -176 61 -357 71 -73 4 -133 11 -133 15 0 5 -206 9 -458 9 -416 0 -460 -2 -482 -17z"/>
+              <path d="M2610 3285 c0 -11 11 -15 40 -15 29 0 40 4 40 15 0 11 -11 15 -40 15 -29 0 -40 -4 -40 -15z"/>
+              <path d="M1583 3246 c-67 -22 -129 -62 -162 -108 -38 -52 -39 -60 -3 -56 17 2 49 25 87 64 44 44 72 64 105 73 34 9 176 11 575 9 529 -3 530 -3 576 -26 25 -12 61 -38 79 -57 29 -30 40 -35 79 -35 l46 1 -40 35 c-22 19 -74 51 -114 72 l-75 37 -555 2 c-440 2 -565 -1 -598 -11z"/>
+              <path d="M2500 3075 c0 -13 -47 -15 -366 -15 -241 0 -363 3 -359 10 4 6 -6 10 -23 10 -17 0 -32 -6 -35 -13 -4 -10 -38 -16 -124 -20 -243 -13 -337 -36 -435 -107 -68 -48 -120 -116 -193 -250 -31 -58 -69 -117 -83 -132 -26 -28 -27 -28 -161 -29 -181 -1 -404 -21 -424 -38 -27 -21 -37 -78 -37 -201 0 -138 26 -266 71 -358 48 -99 94 -120 302 -137 l77 -7 0 -32 c0 -107 80 -221 191 -270 53 -24 71 -28 138 -24 91 4 149 29 210 90 50 51 79 107 87 172 l7 49 96 -7 c53 -3 597 -6 1209 -6 l1112 0 0 -28 c0 -95 71 -202 172 -257 48 -27 62 -30 143 -30 78 0 97 4 140 27 93 49 161 142 172 238 7 60 7 60 232 60 91 0 176 3 188 6 47 13 64 113 47 262 l-7 52 -89 0 c-54 0 -102 6 -123 14 -64 27 -121 138 -95 186 10 18 21 20 113 20 l102 1 -28 24 c-26 23 -27 25 -7 25 48 0 5 18 -67 29 -85 12 -472 31 -649 31 -90 0 -113 3 -118 15 -6 18 -43 20 -48 3 -5 -13 -85 29 -108 56 -7 9 -20 16 -30 16 -9 0 -99 86 -200 191 -315 328 -379 359 -746 359 -170 0 -203 2 -208 15 -3 8 -15 15 -26 15 -11 0 -20 -7 -20 -15z m-690 -74 c-14 -28 -13 -31 15 -31 18 0 28 7 35 25 l10 25 152 0 c84 0 203 -3 265 -7 l112 -6 -15 -22 c-15 -22 -14 -23 30 -26 34 -3 47 0 55 14 18 27 28 14 57 -78 26 -79 27 -85 11 -103 -23 -26 -22 -32 23 -167 22 -65 38 -121 35 -123 -5 -5 -761 15 -907 24 -54 3 -98 10 -98 14 0 4 34 81 76 171 42 90 91 197 110 237 18 39 36 72 39 72 3 0 1 -9 -5 -19z m-202 -108 c-28 -65 -59 -129 -69 -143 -26 -35 -89 -177 -82 -184 3 -3 1 -12 -5 -19 -12 -14 -12 -14 -325 -1 l-149 6 25 27 c13 14 43 62 66 106 75 140 141 214 241 266 50 26 203 56 292 58 l56 1 -50 -117z m1055 110 c-19 -7 -16 -31 6 -43 11 -5 55 -10 99 -10 78 0 80 1 86 26 7 26 9 27 64 21 74 -6 159 -37 241 -86 68 -41 138 -95 111 -86 -9 3 -21 -4 -29 -17 -12 -20 -11 -24 9 -40 23 -19 24 -19 44 7 l21 25 55 -49 55 -49 -23 -25 -23 -24 98 -93 98 -92 -305 6 c-168 4 -344 9 -393 13 l-87 6 -35 111 c-66 216 -115 382 -115 394 0 7 8 12 18 11 10 0 12 -3 5 -6z m-1457 -883 c111 -55 191 -166 210 -293 9 -56 -8 -37 -25 28 -35 143 -156 256 -311 292 l-55 13 59 -4 c39 -3 81 -16 122 -36z m3054 -21 c105 -56 178 -155 205 -276 4 -20 3 -33 -3 -33 -5 0 -13 15 -16 34 -27 145 -178 285 -326 303 -28 3 -52 9 -55 12 -2 4 27 4 66 0 48 -6 87 -17 129 -40z"/>
+            </g>
+          </svg>
         </button>
 
         <button type="button" id="btn_moto" class="icono-accion">
-          <img src="../static/imagenes/moto.svg" alt="Icono de moto">
-          <span>Moto</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 5000 5000" class="icono-svg">
+            <g fill="currentColor" stroke="none">
+              <path d="M3660 3962 c-45 -46 -42 -95 10 -158 53 -64 80 -138 80 -218 0 -58 -23 -161 -39 -179 -4 -4 -36 6 -72 21 -188 85 -524 133 -949 136 l-215 1 -57 -28 c-70 -35 -119 -88 -178 -198 l-46 -84 -69 2 c-135 5 -348 56 -540 129 l-95 37 0 138 c0 86 -5 148 -12 164 -25 55 -29 55 -518 55 -489 0 -493 0 -518 -55 -33 -71 4 -131 202 -324 70 -68 125 -125 124 -126 -2 -2 -84 -26 -183 -55 -356 -102 -305 -77 -439 -209 -123 -121 -152 -163 -141 -212 9 -38 59 -79 96 -79 46 0 65 14 174 120 l100 99 327 40 c179 23 337 41 351 41 18 0 137 -91 413 -312 213 -172 389 -318 391 -324 3 -9 -56 -44 -76 -44 -4 0 -30 27 -56 61 -94 120 -282 242 -440 285 -34 9 -116 19 -190 21 -109 4 -144 2 -218 -16 -164 -39 -302 -117 -418 -238 -116 -119 -184 -243 -220 -400 -18 -79 -21 -114 -17 -226 4 -115 9 -145 37 -227 94 -279 312 -485 597 -561 113 -31 307 -31 419 0 308 83 534 309 616 616 16 61 22 110 22 206 l1 125 105 28 c58 16 113 31 122 33 41 12 50 -266 14 -412 -23 -94 -20 -132 13 -164 23 -23 45 -30 152 -49 288 -50 621 -83 865 -85 l166 -2 28 31 c21 23 32 52 45 118 27 138 28 138 60 56 59 -150 193 -309 334 -397 245 -153 540 -173 799 -53 236 110 392 292 469 547 23 76 27 106 27 223 0 159 -19 248 -82 375 -103 207 -272 357 -487 431 -52 18 -91 35 -87 37 5 3 42 9 83 12 91 9 123 24 140 65 77 187 -319 814 -694 1098 -95 71 -167 105 -237 110 -54 4 -60 2 -89 -26z m461 -524 c138 -165 136 -161 115 -205 -9 -19 -18 -34 -20 -32 -2 2 -29 36 -61 74 -32 39 -88 102 -126 140 l-68 70 6 58 6 58 25 -23 c13 -13 69 -76 123 -140z m-175 -118 c-20 -96 -73 -207 -126 -264 -38 -41 -47 -46 -85 -46 -33 0 -52 7 -86 35 -80 63 -242 112 -469 140 -152 19 -578 39 -637 30 -52 -8 -76 -34 -135 -148 -23 -45 -62 -101 -85 -126 l-42 -44 -133 6 c-163 7 -327 40 -527 106 -182 60 -291 110 -319 146 -18 22 -22 41 -22 97 l0 68 28 -30 c50 -56 342 -166 567 -214 66 -13 177 -30 247 -36 182 -17 196 -8 298 181 28 52 60 102 71 112 18 15 44 17 183 17 473 0 864 -71 977 -176 32 -30 88 -41 129 -24 54 22 148 177 167 274 l8 41 3 -36 c2 -19 -4 -69 -12 -109z m-2661 -855 c87 -32 192 -103 249 -166 25 -28 46 -54 46 -58 0 -3 -89 -51 -197 -104 l-198 -99 -37 16 c-72 31 -171 14 -226 -37 -46 -43 -64 -94 -60 -168 3 -58 8 -74 34 -106 42 -52 87 -81 138 -88 86 -13 175 34 217 116 14 29 28 41 57 48 20 6 116 33 212 59 121 34 177 46 182 38 12 -18 9 -106 -7 -180 -50 -234 -223 -420 -460 -492 -81 -25 -256 -25 -340 0 -198 59 -370 221 -435 410 -103 299 29 630 309 775 42 21 96 45 121 52 118 32 285 26 395 -16z m3192 3 c154 -54 294 -178 363 -323 124 -256 77 -529 -125 -730 -203 -204 -473 -249 -734 -123 -159 76 -290 238 -336 413 -18 69 -20 221 -4 297 14 71 79 202 127 260 73 87 193 176 262 193 l25 6 38 -214 37 -215 -35 -52 c-30 -45 -35 -60 -35 -111 0 -76 16 -115 68 -161 66 -60 144 -73 222 -37 56 25 77 44 101 91 45 88 32 178 -35 243 -22 22 -49 45 -60 50 -14 8 -25 48 -52 200 -18 105 -36 203 -39 219 l-5 29 72 -5 c40 -3 105 -16 145 -30z"/>
+            </g>
+          </svg>
+          
         </button>
       </div>
 
@@ -46,16 +60,27 @@
 
       <!-- Contadores dinámicos -->
       
-      <div id="contadores">
-        <div class="contador">
-          <span class="icono">🚗</span>
-          <span class="espacios" id="espacio_carro">Ocupados: {{ conteo_carros }} / Disponibles: {{ disponible_carro }}</span>
-        </div>
-        <div class="contador">
-          <span class="icono">🏍️</span>
-          <span class="espacios" id="espacio_moto">Ocupados: {{ conteo_motos }} / Disponibles: {{ disponible_moto }}</span>
+  <div id="contadores">
+    <div class="contador">
+      <div class="espacios" id="espacio_carro">
+        <span class="ocupados">Ocupados: {{ conteo_carros }}</span> <br>
+        <div class="disponibles-linea"> 
+          <span class="label">Disponibles:</span> 
+          <span class="disponibles" id="disponible_carro">{{ disponible_carro }}</span>
         </div>
       </div>
+    </div>
+
+    <div class="contador">
+      <div class="espacios" id="espacio_moto">
+        <span class="ocupados">Ocupados: {{ conteo_motos }}</span> <br>
+        <div class="disponibles-linea"> 
+          <span class="label">Disponibles:</span> 
+          <span class="disponibles" id="disponible_moto">{{ disponible_moto }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
       <!-- Tablas -->
       <section id="tabla_activos" style="display:none;">
@@ -83,7 +108,7 @@
       <span id="cerrar" class="cerrar">&times;</span>
 
       <form id="form_operacion">
-        <input type="text" name="vehiculo_placa" placeholder="Ingrese placa" maxlength="7" minlength="6" pattern="[A-Za-z]{3}[0-9A-Za-z]{4}">
+        <input type="text" name="vehiculo_placa" placeholder="Ingrese placa" maxlength="6" minlength="6" pattern="[A-Za-z]{3}[0-9A-Za-z]{4}">
         <input type="hidden" name="tipo_vehiculo" id="tipo_vehiculo_input">
 
         <button type="button" id="registrar_ingreso">Registrar ingreso</button>
@@ -100,7 +125,9 @@
     <button id="btn_alerta_aceptar">Aceptar</button>
   </div>
 </div>
-
+<script src="{{ url_for('static', filename= 'js/reloj_operciones.js')}}"></script>
+<script src="{{ url_for('static', filename='js/emergente-ven.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/contadores.js') }}"></script>
 </body>
 </html>
 
